@@ -1,0 +1,10 @@
+vendor/
+tmp/
+*.log
+*.bak
+production.*
+.DS_Store
+tags
+.idea
+cover.out
+output/
