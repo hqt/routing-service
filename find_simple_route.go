@@ -1,7 +1,9 @@
 package zendesk
 
+import "time"
+
 // FindRoutes returns a path from source to dest using BFS
-func (g *Graph) FindRoutes(start string, end string) ([]string, bool) {
+func (g *Graph) FindRoutes(start string, end string, time time.Time) ([]string, bool) {
 	if start == end {
 		return []string{}, true
 	}
@@ -16,6 +18,9 @@ func (g *Graph) FindRoutes(start string, end string) ([]string, bool) {
 
 	queue := NewFIFO()
 	for _, source := range allSources {
+		if !g.idToNode[source].station.IsOpen(time) {
+			continue
+		}
 		queue.Push(source)
 		visited[source] = true
 		prev[source] = ""
@@ -31,12 +36,17 @@ func (g *Graph) FindRoutes(start string, end string) ([]string, bool) {
 
 		neighbors := g.idToNode[stationID].neighbors
 		for _, neighbor := range neighbors {
-			if visited[neighbor.id()] {
+			neighborID := neighbor.id()
+			if visited[neighborID] {
 				continue
 			}
-			visited[neighbor.id()] = true
-			prev[neighbor.id()] = stationID
-			queue.Push(neighbor.id())
+			if !g.idToNode[neighborID].station.IsOpen(time) {
+				continue
+			}
+
+			visited[neighborID] = true
+			prev[neighborID] = stationID
+			queue.Push(neighborID)
 		}
 	}
 

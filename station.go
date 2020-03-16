@@ -34,3 +34,8 @@ func NewStation(code string, name string, openingDate time.Time) (*Station, erro
 		OpeningDate: openingDate,
 	}, nil
 }
+
+// IsOpen checks if the station is opened at the predefined time or not
+func (s *Station) IsOpen(time time.Time) bool {
+	return s.OpeningDate.Before(time)
+}
