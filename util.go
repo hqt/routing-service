@@ -48,11 +48,12 @@ func ParseCSVToStations(path string) ([]*Station, error) {
 		if err != nil {
 			return nil, err
 		}
-		station := &Station{
-			Code:        record[0],
-			Name:        record[1],
-			OpeningDate: *date,
+
+		station, err := NewStation(record[0], record[1], *date)
+		if err != nil {
+			return nil, err
 		}
+
 		stations = append(stations, station)
 	}
 }
@@ -68,4 +69,14 @@ func parseDate(str string) (*time.Time, error) {
 	}
 
 	return &t, nil
+}
+
+// stringsContain checks if obj inside arr
+func stringsContain(arr []string, obj string) bool {
+	for _, elem := range arr {
+		if elem == obj {
+			return true
+		}
+	}
+	return false
 }

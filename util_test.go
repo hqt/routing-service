@@ -17,6 +17,8 @@ func TestParseCSVToRoutes(t *testing.T) {
 		{"file_not_found", "not_found.csv", false, 0},
 		{"missing_field", "etc/csv_test/missing_field.csv", false, 0},
 		{"wrong_date_format", "etc/csv_test/wrong_date_format.csv", false, 0},
+		{"invalid_station_format", "etc/csv_test/invalid_station_format.csv", false, 0},
+		{"invalid_station_line_format", "etc/csv_test/invalid_station_line_format.csv", false, 0},
 		{"full_data_file", "etc/StationMap.csv", true, 166},
 	}
 
