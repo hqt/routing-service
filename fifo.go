@@ -37,6 +37,7 @@ func (f *FIFO) Front() interface{} {
 	return node
 }
 
+// Len returns total elements of FIFO
 func (f *FIFO) Len() int {
 	return len(f.queue)
 }
