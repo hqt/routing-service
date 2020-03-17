@@ -10,12 +10,10 @@ import (
 const INF = math.MaxInt32 / 10
 
 // FindRoutesWithConstraints finds routes with constraints using Dijkstra algorithm
-func (g Graph) FindRoutesWithConstraints(start string, end string, time time.Time) ([]string, int, bool) {
+func (g Graph) FindRoutesWithConstraints(start string, end string, queryTime time.Time) ([]string, int, bool) {
 	if start == end {
 		return []string{}, 0, true
 	}
-
-	dayType := getDayTypeOfTime(time)
 
 	// stored all visited node
 	visited := map[string]bool{}
@@ -34,7 +32,7 @@ func (g Graph) FindRoutesWithConstraints(start string, end string, time time.Tim
 
 	heap := datastructure.NewPriorityQueue()
 	for _, source := range allSources {
-		if !g.idToNode[source].station.IsOpen(time) {
+		if !g.idToNode[source].station.IsOpen(queryTime) {
 			continue
 		}
 		heap.Push(datastructure.NewHeapNode(source, 0))
@@ -52,17 +50,21 @@ func (g Graph) FindRoutesWithConstraints(start string, end string, time time.Tim
 			if visited[neighborID] {
 				continue
 			}
-			if !g.idToNode[neighborID].station.IsOpen(time) {
+			if !g.idToNode[neighborID].station.IsOpen(queryTime) {
 				continue
 			}
 
-			weight := getTimeBetweenStation(g.idToNode[stationID].station, g.idToNode[neighborID].station, dayType)
+			// we must update again current time. because the time we go to the stationID, we might go to different time price
+			currentTime := queryTime.Add(time.Minute * time.Duration(costs[stationID]))
+			weight := getTimeBetweenStation(g.idToNode[stationID].station, g.idToNode[neighborID].station, currentTime)
+
 			updatedWeight := costs[stationID] + weight
 			if updatedWeight < costs[neighborID] {
 				costs[neighborID] = updatedWeight
 				prev[neighborID] = stationID
 				heap.Push(datastructure.NewHeapNode(neighborID, updatedWeight))
 			}
+
 			visited[neighborID] = true
 		}
 	}

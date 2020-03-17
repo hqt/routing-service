@@ -3,7 +3,6 @@ package server
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"github.com/stretchr/testify/require"
 	"net/http"
 	"testing"
@@ -78,7 +77,7 @@ func TestAdvancedRouting(t *testing.T) {
 
 	from := "Boon Lay"
 	to := "Little India"
-	date := "2019-01-31T16:00"
+	date := "2019-01-31T14:00"
 
 	testCases := []struct {
 		Name           string
@@ -131,7 +130,6 @@ func TestAdvancedRouting(t *testing.T) {
 				instructions, ok := data["instructions"].([]interface{})
 				require.True(t, ok)
 
-				fmt.Println(data)
 				minutes, ok := data["minutes"]
 				require.True(t, ok)
 				require.Equal(t, float64(134), minutes)

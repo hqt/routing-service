@@ -4,9 +4,15 @@ You are provided data on the stations and lines of Singapore's urban rail system
 ## Technical Detail
 - Language: Golang 1.14
 - Other: Docker
-- Simple routing API: BFS algorithm
-- Advanced routing API: Dijkstra algorithm
 - Application will be hosted on port 3000
+- Algorithms:
+    - Simple routing API: BFS algorithm
+    - Advanced routing API: Dijkstra algorithm
+    - **Noted**: There are some disadvantages for the currently Dijkstra implementation:
+        - It doesn't have some other conditions such as time delay or possibility to minimize to switch lanes instead of time, real-update without rebuild the whole graph.
+        - For the above requirement, there is paper named [Raptor algorithm](https://www.microsoft.com/en-us/research/publication/round-based-public-transit-routing/) which I implemented in Java at [here](https://github.com/hqt/street-router/blob/master/Source/router-service/artifacter/src/main/java/com/fpt/router/artifacter/algorithm/RaptorAlgorithm.java)
+
+
 
 ## API
 This service has 2 endpoints.
@@ -67,7 +73,7 @@ Parameters:
         "Take DT line from Stevens to Newton",
         "Take DT line from Newton to Little India"
     ],
-    "startAt": "2019-01-31T16:00"
+    "startAt": "2019-01-31T14:00"
 }
 ```
 

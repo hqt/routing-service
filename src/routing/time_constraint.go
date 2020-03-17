@@ -24,10 +24,10 @@ type TimeConstraint struct {
 var timeStations = map[string]TimeConstraint{
 	"NS":          {12, 10, 10},
 	"NE":          {12, 10, 10},
-	"DT":          {10, 8, 0},
+	"DT":          {10, 8, INF},
 	"TE":          {10, 8, 8},
-	"CG":          {10, 10, 0},
-	"CE":          {10, 10, 0},
+	"CG":          {10, 10, INF},
+	"CE":          {10, 10, INF},
 	"EW":          {10, 10, 10},
 	"CC":          {12, 10, 10},
 	"CHANGE_LINE": {15, 10, 10},
@@ -50,7 +50,8 @@ func getDayTypeOfTime(timeObject time.Time) DayType {
 	return NonPeakTime
 }
 
-func getTimeBetweenStation(first *Station, second *Station, dayType DayType) int {
+func getTimeBetweenStation(first *Station, second *Station, currentTime time.Time) int {
+	dayType := getDayTypeOfTime(currentTime)
 	var timeConfig TimeConstraint
 	if first.Line == second.Line {
 		timeConfig = timeStations[first.Line]

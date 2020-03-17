@@ -15,7 +15,7 @@ func TestTimeBasedRouting(t *testing.T) {
 
 	source := "Boon Lay"
 	destination := "Little India"
-	startTimeStr := "2019-01-31T16:00"
+	startTimeStr := "2019-01-31T14:00"
 	layout := "2006-01-02T15:04"
 	startTime, err := time.Parse(layout, startTimeStr)
 	require.Nil(t, err)
