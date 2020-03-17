@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/test.Dockerfile
+    volumes:
+      - ../output:/src/output
+    command: sh -c "./docker/test.sh"
+    # tty: true

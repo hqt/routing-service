@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/hqt/routing-service/src/routing"
+	"log"
 	"net/http"
 	"net/http/httptest"
 )
@@ -36,11 +37,13 @@ func NewApp(csvPath string) (*App, error) {
 
 func (app *App) setUpRoute() {
 	app.mux.HandleFunc("/api/simple_route", app.simpleRoute)
+	app.mux.HandleFunc("/api/advanced_route", app.advancedRoute)
 }
 
 // Start starts the application
 func (app *App) Start() error {
 
+	log.Println("start server on port 3000...")
 	server := &http.Server{
 		Addr:    defaultServer,
 		Handler: app.mux,
