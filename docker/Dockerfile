@@ -10,5 +10,6 @@ COPY go.mod go.sum $BUILD_DIRECTORY/
 RUN GO111MODULE=on go mod download
 
 COPY . $BUILD_DIRECTORY/
-RUN go run cmd/server/main.go
+EXPOSE 3000
+CMD go run cmd/server/main.go
 

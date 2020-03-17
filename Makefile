@@ -10,7 +10,7 @@ start-server-native:
 .PHONY: start-server-native
 
 start-server:
-	docker-compose -f docker/docker-compose.yml up --build
+	docker build -t routing-service -f docker/Dockerfile . && docker run -p 3000:3000 routing-service
 .PHONY: start-server
 
 simple-request:

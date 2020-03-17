@@ -9,7 +9,7 @@ You are provided data on the stations and lines of Singapore's urban rail system
 - Application will be hosted on port 3000
 
 ## API
-This service only has 2 endpoints.
+This service has 2 endpoints.
 
 ### `POST api/simple_route`
 Parameters:
@@ -89,7 +89,7 @@ Prerequisite: Docker for running tests and server
 make ci-test
 ```
 
-- Run server:
+- Run server (using Docker):
 ```bash
 make start-server
 ```
