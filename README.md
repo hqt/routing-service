@@ -22,8 +22,8 @@ Parameters:
 
 |Name|Description|Required?|
 |----|-----------|---------|
-|start|Start station|Yes|
-|stop|Destination station|Yes|
+|from|Start station|Yes|
+|to|Destination station|Yes|
 
 
 ### `POST api/advanced_route`
@@ -31,9 +31,9 @@ Parameters:
 
 |Name|Description|Required?|
 |----|-----------|---------|
-|start|Start station|Yes|
-|stop|Destination station|Yes|
-|time|Start time ("YYYY-MM-DDThh:mm" format, e.g. '2019-01-31T16:00')|Yes|
+|from|Start station|Yes|
+|to|Destination station|Yes|
+|start_time|Start time ("YYYY-MM-DDThh:mm" format, e.g. '2019-01-31T16:00')|Yes|
 
 ### Example response
 ```json
@@ -73,7 +73,7 @@ Parameters:
         "Take DT line from Stevens to Newton",
         "Take DT line from Newton to Little India"
     ],
-    "startAt": "2019-01-31T14:00"
+    "start_at": "2019-01-31T14:00"
 }
 ```
 
