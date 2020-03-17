@@ -1,9 +1,9 @@
 package main
 
-import "github.com/hqt/zendesk-assignment"
+import routingservice "github.com/hqt/routing-service"
 
 func main() {
-	app, err := zendesk.NewApp()
+	app, err := routingservice.NewApp()
 	if err != nil {
 		panic(err)
 	}

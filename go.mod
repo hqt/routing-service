@@ -1,4 +1,4 @@
-module github.com/hqt/zendesk-assignment
+module github.com/hqt/routing-service
 
 go 1.14
 

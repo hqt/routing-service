@@ -1,4 +1,4 @@
-package zendesk
+package routingservice
 
 // Queue interface for queue
 type Queue interface {

@@ -1,4 +1,4 @@
-package zendesk
+package routingservice
 
 import (
 	"errors"
