@@ -1,9 +1,11 @@
 package main
 
-import routingservice "github.com/hqt/routing-service"
+import (
+	"github.com/hqt/routing-service/src/server"
+)
 
 func main() {
-	app, err := routingservice.NewApp()
+	app, err := server.NewApp("etc/StationMap.csv")
 	if err != nil {
 		panic(err)
 	}
